@@ -60,24 +60,16 @@ records = []
 for i in range(amount):
     d = records_data[0xC + (i * 0xC) : 0x18 + (i * 0xC)]
     _id = struct.unpack("<I", d[0:4])[0]
+    seconds = struct.unpack("<B", d[7:8])[0]
     unknown = d[4:].encode("hex")
-    records.append({"id": _id, "data": unknown})
+    records.append({"id": _id, "data": unknown, "seconds": seconds})
 
 print(records)
 
-# [
-#    {'data': '01011409e1815c81', 'id': 3},
-#    {'data': '0101010de1815c81', 'id': 123456788}, 
-#    {'data': '0101010fe1815c85', 'id': 123456788}
-# ]
-
-
-# [
-#    {'data': '01010100e1815cd9', 'id': 123456788}, 
-#    {'data': '01011403e1815cd9', 'id': 3}, 
-#    {'data': '01010117e1815cdd', 'id': 123456788}, 
-#    {'data': '01010112e1815ce5', 'id': 123456788}
-# ]
+#[
+#	{'seconds': 15, 'data': '0101010fe1813f6d', 'id': 123456788}, 
+#	{'seconds': 19, 'data': '01011413e1813f6d', 'id': 3}
+#]
 
 
 
